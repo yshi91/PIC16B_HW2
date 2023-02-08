@@ -35,7 +35,7 @@ class TmdbSpider(scrapy.Spider):
         '''
         
         # using a for loop to get all the links for actors
-        cast_links = [elem.attrib["href"] for elem in response.css("ol.people.credits div.info a")]
+        cast_links = [elem.attrib["href"] for elem in response.css("ol.people.credits:not(.crew) div.info a")]
         
         # yield all the full links of the actor's page we want to go and call teh parse_actor_page function
         for link in cast_links:
@@ -58,5 +58,5 @@ class TmdbSpider(scrapy.Spider):
             yield {"actor name": actor_name,
                    "acting": acting
                   }
-        
+
         
