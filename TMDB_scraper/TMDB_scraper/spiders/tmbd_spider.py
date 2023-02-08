@@ -6,6 +6,7 @@ import scrapy
 class TmdbSpider(scrapy.Spider):
     name = 'tmdb_spider'
     
+    # we will start with the movie Train to Busan
     start_urls = ['https://www.themoviedb.org/movie/396535']
     
     
@@ -52,6 +53,7 @@ class TmdbSpider(scrapy.Spider):
         # get the list of all the acting the actor did
         acting_list = response.css("a.tooltip bdi::text").getall()
         
+        # yield the name of the actor along with their acting of movies or TV shows
         for acting in acting_list:
             yield {"actor name": actor_name,
                    "acting": acting
