@@ -28,7 +28,6 @@ class TmdbSpider(scrapy.Spider):
 
         
         
-        
     def parse_full_credits(self, response):
         '''
         this function gets all the links for the cast of the movie
@@ -41,6 +40,7 @@ class TmdbSpider(scrapy.Spider):
         for link in cast_links:
             yield scrapy.Request(response.urljoin(link), callback = self.parse_actor_page)
             
+    
     
     def parse_actor_page(self, response):
         '''
